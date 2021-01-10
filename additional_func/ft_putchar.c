@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/05 16:28:44 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/05 16:28:48 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+void	ft_putchar(char c)
 {
-	va_list	args;
-	int		res;
-
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	write(1, &c, 1);
 }

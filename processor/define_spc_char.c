@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   define_spc_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/10 12:09:06 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/10 12:09:08 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+char	define_spc_char(t_spec *spec)
 {
-	va_list	args;
-	int		res;
-
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	if (spec->flag2 == 1)
+		return ('0');
+	else
+		return (' ');
 }

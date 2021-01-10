@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   define_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/05 17:15:20 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/05 17:15:22 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+void	define_flag(char *s, size_t *i, t_spec *spec)
 {
-	va_list	args;
-	int		res;
-
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	while (s[*i] == '-' || s[*i] == '0' || s[*i] == '#' || s[*i] == ' ' || s[*i]
+	== '+')
+	{
+		if (s[*i] == '-')
+			spec->flag1 = 1;
+		else if (s[*i] == '0')
+			spec->flag2 = 1;
+		else if (s[*i] == '#')
+			spec->flag3 = 1;
+		else if (s[*i] == ' ')
+			spec->flag4 = 1;
+		else
+			spec->flag5 = 1;
+		(*i)++;
+	}
 }

@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   conv_c.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/09 16:54:08 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/09 16:54:09 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+void	conv_c(va_list args, int *ct, t_spec *spec)
 {
-	va_list	args;
-	int		res;
+	int		j;
 
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	j = 0;
+	if (spec->flag1 == 1)
+	{
+		ft_putchar((char)va_arg(args, int));
+		(*ct)++;
+		j++;
+		print_spc_from_left(ct, &j, spec);
+	}
+	else
+	{
+		print_spc_from_right(ct, &j, spec, 1);
+		ft_putchar((char)va_arg(args, int));
+		(*ct)++;
+	}
 }

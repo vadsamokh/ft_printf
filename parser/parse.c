@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2020/12/20 16:44:32 by vbeech            #+#    #+#             */
+/*   Updated: 2020/12/20 16:44:34 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+int		parse(char *s, va_list args)
 {
-	va_list	args;
-	int		res;
+	size_t	i;
+	int		ct;
 
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	i = 0;
+	ct = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != '%')
+		{
+			ft_putchar(s[i]);
+			i++;
+			ct++;
+		}
+		else
+		{
+			i++;
+			if (parse_spec(s, args, &i, &ct) == -1)
+				return (ct);
+		}
+	}
+	return (ct);
 }

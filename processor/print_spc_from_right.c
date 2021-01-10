@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_spc_from_right.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/10 12:21:28 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/10 12:21:30 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+void	print_spc_from_right(int *ct, int *j, t_spec *spec, int len)
 {
-	va_list	args;
-	int		res;
+	char	spc;
 
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	spc = define_spc_char(spec);
+	if (spec->width != 0)
+	{
+		while (*j < (spec->width - len))
+		{
+			ft_putchar(spc);
+			(*ct)++;
+			(*j)++;
+		}
+	}
 }

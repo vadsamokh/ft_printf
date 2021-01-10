@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   define_prec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/20 14:46:22 by vbeech            #+#    #+#             */
-/*   Updated: 2020/12/20 14:46:24 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/05 18:10:09 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/05 18:10:10 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "../headers/ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+void	define_prec(char *s, va_list args, size_t *i, t_spec *spec)
 {
-	va_list	args;
-	int		res;
+	size_t	j;
+	char	num[11];
 
-	va_start(args, s);
-	res = parse((char*)s, args);
-	va_end(args);
-	return (res);
+	j = 0;
+	if (s[*i] == '.')
+	{
+		(*i)++;
+		if (s[*i] == '*')
+		{
+			spec->precision = va_arg(args, int);
+			(*i)++;
+		}
+		else
+		{
+			while (ft_isdigit(s[*i]) == 1)
+			{
+				num[j] = s[*i];
+				(*i)++;
+				j++;
+			}
+			num[j] = '\0';
+			spec->precision = ft_atoi(num);
+		}
+	}
 }
