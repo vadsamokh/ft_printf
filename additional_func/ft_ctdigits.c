@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_ctdigits.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 12:59:28 by vbeech            #+#    #+#             */
-/*   Updated: 2021/01/10 12:59:29 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/16 15:40:06 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/16 15:40:11 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-void	ft_putstr(char *s, t_spec *spec)
+size_t	ft_ctdigits(unsigned int n)
 {
-	int	k;
+	size_t	count;
+	long	mul;
 
-	k = 0;
-	if (spec->conv == 'p')
+	count = 1;
+	mul = 10;
+	if (n < 0)
+		count++;
+	while ((n / mul) != 0)
 	{
-		ft_putchar('0');
-		ft_putchar('x');
+		count++;
+		mul = mul * 10;
 	}
-	while ((*s != 0) && ((k < spec->precision) || (spec->precision == -1)))
-	{
-		ft_putchar(*s);
-		s++;
-		k++;
-	}
+	return (count);
 }

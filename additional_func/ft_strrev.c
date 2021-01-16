@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 12:59:28 by vbeech            #+#    #+#             */
-/*   Updated: 2021/01/10 12:59:29 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/16 15:43:25 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/16 15:43:27 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-void	ft_putstr(char *s, t_spec *spec)
+char	*ft_strrev(char *s)
 {
-	int	k;
+	size_t	len;
+	size_t	k;
+	char	buf;
 
+	len = ft_strlen(s);
 	k = 0;
-	if (spec->conv == 'p')
+	while (k < (len - 1 - k))
 	{
-		ft_putchar('0');
-		ft_putchar('x');
-	}
-	while ((*s != 0) && ((k < spec->precision) || (spec->precision == -1)))
-	{
-		ft_putchar(*s);
-		s++;
+		buf = s[k];
+		s[k] = s[len - 1 - k];
+		s[len - 1 - k] = buf;
 		k++;
 	}
+	return (s);
 }

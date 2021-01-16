@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_u.c                                           :+:      :+:    :+:   */
+/*   ft_convert_to_hex.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 14:57:32 by vbeech            #+#    #+#             */
-/*   Updated: 2021/01/10 14:57:33 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/16 15:55:07 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/16 15:55:11 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 
-int	conv_u(va_list args, int *ct, t_spec *spec)
+char	*ft_convert_to_hex(size_t n, t_spec *spec)
 {
-	int		j;
 	char	*str;
-	int		len;
+	int		k;
 
-	j = 0;
-	str = ft_itoa(va_arg(args, unsigned int));
+	k = 0;
+	str = (char*)malloc(sizeof(char) * (ft_ctdigits(n) + 1));
 	if (str == NULL)
-		return (-1);
-	len = ft_min((int)ft_strlen(str), spec->precision);
-	if (spec->flag1 == 1)
+		return (NULL);
+	while (n > 0)
 	{
-		ft_putstr(str, spec);
-		(*ct) = (*ct) + len;
-		j = j + len;
-		print_spc_from_left(ct, &j, spec);
+		str[k] = (n % 16) + 48;
+		if (str[k] > 57)
+		{
+			if (spec->conv == 'x' || spec->conv == 'p')
+				str[k] = str[k] + 39;
+			else
+				str[k] = str[k] + 7;
+		}
+		n = n / 16;
+		k++;
 	}
-	else
-	{
-		print_spc_from_right(ct, &j, spec, len);
-		ft_putstr(str, spec);
-		(*ct) = (*ct) + len;
-	}
-	free(str);
-	return (0);
+	str[k] = '\0';
+	return (ft_strrev(str));
 }

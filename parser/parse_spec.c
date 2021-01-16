@@ -33,8 +33,10 @@ int	parse_spec(char *s, va_list args, size_t *i, int *ct)
 			define_width(s, args, i, spec);
 			define_prec(s, args, i, spec);
 			define_conv(s, i, spec);
-			processor(args, ct, spec);
+			if (processor(args, ct, spec) == -1)
+				return (-1);
 		}
 	}
+	free(spec);
 	return (0);
 }
