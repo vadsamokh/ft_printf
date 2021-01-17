@@ -2,6 +2,8 @@
 
 NAME =	libftprintf.a
 
+LIBFT =	libft/libft.a
+
 SRCS =	ft_printf.c \
 		additional_func/ft_convert_to_hex.c \
 		additional_func/ft_ctdigits.c \
@@ -29,7 +31,8 @@ SRCS =	ft_printf.c \
 		processor/print_spc_from_right.c \
 		processor/processor.c \
 
-OBJ =	ft_convert_to_hex.o \
+OBJ =	ft_printf.o \
+		ft_convert_to_hex.o \
         ft_ctdigits.o \
         ft_max.o \
         ft_min.o \
@@ -57,9 +60,7 @@ OBJ =	ft_convert_to_hex.o \
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
-
-HEADERS = -I ./headers
+CFLAGS = -Wall -Wextra -Werror -I ./headers
 
 RM		= rm -f
 
@@ -70,16 +71,13 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 	$(MAKE) -C ./libft
 	cp libft/libft.a $(NAME)
-	$(CC) $(FLAGS) $(HEADERS) $(SRCS)
+	$(CC) -c $(CFLAGS) $(SRCS)
 	ar -rcs $(NAME) $(OBJS)
-
-.c.o:
-	$(CC) $(HEADERS) $(CFLAGS) -c $<
 
 clean:
 	$(MAKE) clean -C ./libft
-	$(RM) $(OBJ)
 	$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
 fclean:		clean
 	$(MAKE) fclean -C ./libft
