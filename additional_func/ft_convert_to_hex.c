@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 char	*ft_convert_to_hex(size_t n, t_spec *spec)
 {

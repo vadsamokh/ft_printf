@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 int	conv_x(va_list args, int *ct, t_spec *spec)
 {
@@ -22,10 +22,10 @@ int	conv_x(va_list args, int *ct, t_spec *spec)
 	str = ft_convert_to_hex(va_arg(args, unsigned int), spec);
 	if (str == NULL)
 		return (-1);
-	len = ft_min((int)ft_strlen(str), spec->precision);
+	len = ft_max((int)ft_strlen(str), spec->precision);
 	if (spec->flag1 == 1)
 	{
-		ft_putstr(str, spec);
+		ft_putnbr(str, spec, ct);
 		(*ct) = (*ct) + len;
 		j = j + len;
 		print_spc_from_left(ct, &j, spec);
@@ -33,7 +33,7 @@ int	conv_x(va_list args, int *ct, t_spec *spec)
 	else
 	{
 		print_spc_from_right(ct, &j, spec, len);
-		ft_putstr(str, spec);
+		ft_putnbr(str, spec, ct);
 		(*ct) = (*ct) + len;
 	}
 	free(str);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 void	print_spc_from_left(int *ct, int *j, t_spec *spec)
 {

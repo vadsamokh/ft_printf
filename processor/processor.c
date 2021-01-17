@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 int	processor(va_list args, int *ct, t_spec *spec)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 void	define_width(char *s, va_list args, size_t *i, t_spec *spec)
 {

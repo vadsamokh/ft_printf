@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 15:43:25 by vbeech            #+#    #+#             */
-/*   Updated: 2021/01/16 15:43:27 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/17 16:26:42 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/17 16:26:43 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strrev(char *s)
+void	ft_putnbr(char *s, t_spec *spec, int *ct)
 {
-	size_t	len;
-	size_t	k;
-	char	buf;
+	int	k;
 
-	len = ft_strlen(s);
-	k = 0;
-	while (k < (len - 1 - k))
+	if (*s == '-')
 	{
-		buf = s[k];
-		s[k] = s[len - 1 - k];
-		s[len - 1 - k] = buf;
+		ft_putchar('-');
+		s++;
+		(*ct)++;
+	}
+	k = (int)ft_strlen(s);
+	while (k < spec->precision)
+	{
+		ft_putchar('0');
 		k++;
 	}
-	return (s);
+	while (*s != '\0')
+	{
+		ft_putchar(*s);
+		s++;
+	}
 }

@@ -10,10 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 void	define_conv(char *s, size_t *i, t_spec *spec)
 {
 	spec->conv = s[*i];
 	(*i)++;
+	if ((spec->conv == 'd' || spec->conv == 'i' || spec->conv == 'o' ||
+	spec->conv == 'u' || spec->conv == 'x' || spec->conv == 'X') &&
+	(spec->precision != -1))
+		spec->flag2 = 0;
 }

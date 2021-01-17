@@ -10,23 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 void	define_flag(char *s, size_t *i, t_spec *spec)
 {
-	while (s[*i] == '-' || s[*i] == '0' || s[*i] == '#' || s[*i] == ' ' || s[*i]
-	== '+')
+	while (s[*i] == '-' || s[*i] == '0')
 	{
 		if (s[*i] == '-')
+		{
+			if (spec->flag2 == 1)
+				spec->flag2 = 0;
 			spec->flag1 = 1;
-		else if (s[*i] == '0')
+		}
+		else if ((s[*i] == '0') && (spec->flag1 == 0))
 			spec->flag2 = 1;
-		else if (s[*i] == '#')
-			spec->flag3 = 1;
-		else if (s[*i] == ' ')
-			spec->flag4 = 1;
-		else
-			spec->flag5 = 1;
 		(*i)++;
 	}
 }

@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbeech <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 15:43:25 by vbeech            #+#    #+#             */
-/*   Updated: 2021/01/16 15:43:27 by vbeech           ###   ########.fr       */
+/*   Created: 2021/01/17 16:11:16 by vbeech            #+#    #+#             */
+/*   Updated: 2021/01/17 16:11:18 by vbeech           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strrev(char *s)
+int	ft_max(int a, int b)
 {
-	size_t	len;
-	size_t	k;
-	char	buf;
-
-	len = ft_strlen(s);
-	k = 0;
-	while (k < (len - 1 - k))
-	{
-		buf = s[k];
-		s[k] = s[len - 1 - k];
-		s[len - 1 - k] = buf;
-		k++;
-	}
-	return (s);
+	if (a <= b)
+		return (b);
+	else
+		return (a);
 }

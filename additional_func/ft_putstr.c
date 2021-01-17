@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 void	ft_putstr(char *s, t_spec *spec)
 {
@@ -22,7 +22,7 @@ void	ft_putstr(char *s, t_spec *spec)
 		ft_putchar('0');
 		ft_putchar('x');
 	}
-	while ((*s != 0) && ((k < spec->precision) || (spec->precision == -1)))
+	while ((*s != '\0') && ((k < spec->precision) || (spec->precision < 0)))
 	{
 		ft_putchar(*s);
 		s++;

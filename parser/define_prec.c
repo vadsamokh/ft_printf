@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 void	define_prec(char *s, va_list args, size_t *i, t_spec *spec)
 {
@@ -26,14 +26,12 @@ void	define_prec(char *s, va_list args, size_t *i, t_spec *spec)
 			spec->precision = va_arg(args, int);
 			(*i)++;
 		}
+		else if (ft_isdigit(s[*i]) == 0)
+			spec->precision = 0;
 		else
 		{
 			while (ft_isdigit(s[*i]) == 1)
-			{
-				num[j] = s[*i];
-				(*i)++;
-				j++;
-			}
+				num[j++] = s[(*i)++];
 			num[j] = '\0';
 			spec->precision = ft_atoi(num);
 		}

@@ -19,9 +19,6 @@ typedef struct	s_spec
 {
 	int			flag1;
 	int			flag2;
-	int			flag3;
-	int			flag4;
-	int			flag5;
 	int			width;
 	int			precision;
 	char		conv;
@@ -30,8 +27,10 @@ typedef struct	s_spec
 int				ft_printf(const char *s, ...);
 void			ft_putchar(char c);
 void			ft_putstr(char *s, t_spec *spec);
+void			ft_putnbr(char *s, t_spec *spec, int *ct);
 size_t			ft_ctdigits(unsigned int n);
 int				ft_min(int a, int b);
+int				ft_max(int a, int b);
 char			*ft_strrev(char *s);
 char			*ft_convert_to_hex(size_t a, t_spec *spec);
 int				parse(char *s, va_list args);

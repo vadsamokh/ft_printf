@@ -1,12 +1,10 @@
-#include "./headers/ft_printf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int main()
 {
-	int a = 10;
-	int *b = &a;
-	int c;
-	c = ft_printf("%p\n", b);
-	printf("%p\n", b);
-	printf("%d\n", c);
+	int a;
+	int b;
+	a = ft_printf("%x\n", 4294967295);
+	b = printf("%x\n", 4294967295);
 }

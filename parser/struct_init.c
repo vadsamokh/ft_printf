@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#include "ft_printf.h"
 
 t_spec	*struct_init(void)
 {
@@ -21,9 +21,6 @@ t_spec	*struct_init(void)
 		return (NULL);
 	spec->flag1 = 0;
 	spec->flag2 = 0;
-	spec->flag3 = 0;
-	spec->flag4 = 0;
-	spec->flag5 = 0;
 	spec->width = 0;
 	spec->precision = -1;
 	spec->conv = 0;
